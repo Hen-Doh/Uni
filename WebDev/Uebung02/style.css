@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
     background-color: #be2c5d;
     font: italic;
@@ -5,6 +6,14 @@ body {
     color: #1ab62f;
     background-color: black;
 }
+
+body.dark {background-color: #292c35;} /* #9b59b6 */
+
+body.dark  .wrapper{
+    background-color: #ca0202;
+}
+
+body.dark h1, body.dark .support a {color: #fff;}
 
 
 .wrapper {
@@ -21,6 +30,46 @@ body {
     padding: 1vw;
     font-size: 150%;
 }
+/* --------------Darkmode----------*/
+.checkbox{
+    border-radius: 1em;
+    grid-column: col 11;
+    grid-row: row 1;
+}
+.checkbox-label {
+    background-color: #111;
+    width: 50px;
+    height: 26px;
+    border-radius: 50px;
+    
+    grid-column: col 11;
+    grid-row: row 1;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.fa-moon {color: #f1c40f;}
+
+.fa-sun {color: #f39c12;}
+
+.checkbox-label .ball {
+  background-color: #fff;
+  width: 22px;
+  height: 22px;
+  grid-column: col 11;
+  grid-row: row 1;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+  transform: translateX(24px);
+}
+/* -------------------Darkmode end --------------*/
 .logo{
     background-color:#000000;
     border-radius: 3em;
@@ -32,7 +81,7 @@ body {
 .title{
     color: #ca0202;
     background-color: gray;
-    grid-column: col 3/ span 8;
+    grid-column: col 3/ span 7;
     grid-row: row 1;
     font-size: 3em;
 }
