@@ -1,0 +1,65 @@
+body {
+    background-color: #be2c5d;
+    font: italic;
+    font-size: larger;
+    color: #1ab62f;
+    background-color: black;
+}
+
+
+.wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: [col] 100px [col] 100px [col] 100px [col] 100px  ;
+    grid-template-rows: [row] auto [row] auto [row] ;
+    background-color: #3f2f5c;
+}
+
+.box {
+    background-color: #f7f6f6;
+    border-radius: 5px;
+    padding: 1vw;
+    font-size: 150%;
+}
+.logo{
+    background-color:#000000;
+    border-radius: 3em;
+    grid-column: col 1/ span 2;
+    grid-row: row 1;
+    width: 5vw;
+    height: 5vw;
+}
+.title{
+    color: #ca0202;
+    background-color: gray;
+    grid-column: col 3/ span 8;
+    grid-row: row 1;
+    font-size: 3em;
+}
+.links{
+    display: flex;
+    flex-direction: row;
+    grid-column: col 4/ span 5;
+    grid-row: row 2;
+}
+.links > a{
+    box-shadow: inset 0 0 0 0 #54b3d6;
+    margin-right: 1em;
+    transition: color 0.6s ease-in-out, box-shadow .3s ease-in-out;
+} /*can this be prettier?*/
+.links > a:hover{
+    box-shadow: inset 100% 0 0 0 #000000;
+    color: rgb(252, 0, 0);
+}
+.article{
+    grid-column: col 2/ span 8;
+    grid-row: row 3;
+}
+.article > ol >li>img {
+    background-color: rgb(190, 17, 89);
+    border-radius: 2em;
+    grid-column: col 1/ span 2;
+    grid-row: row 1;
+    width: 5vw;
+    height: 5vw;
+}
