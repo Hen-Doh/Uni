@@ -4,16 +4,58 @@ body {
     font: italic;
     font-size: larger;
     color: #1ab62f;
-    background-color: black;
+    background-color: rgb(32, 139, 47);
 }
 
-body.dark {background-color: #292c35;} /* #9b59b6 */
+body.dark {background-color: #0b2d91;} /* #9b59b6 */
 
 body.dark  .wrapper{
     background-color: #ca0202;
 }
 
 body.dark h1, body.dark .support a {color: #fff;}
+
+body.dark {background-color: #292c35;} /* #9b59b6 */
+
+body.dark h1, body.dark .support a {color: #fff;}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-label {
+  background-color: #111;
+  width: 50px;
+  height: 26px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fa-moon {color: #f1c40f;}
+
+.fa-sun {color: #f39c12;}
+
+.checkbox-label .ball {
+  background-color: #fff;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+  transform: translateX(24px);
+}
+
 
 
 .wrapper {
@@ -30,7 +72,7 @@ body.dark h1, body.dark .support a {color: #fff;}
     padding: 1vw;
     font-size: 150%;
 }
-/* --------------Darkmode----------*/
+/* --------------Darkmode----------
 .checkbox{
     border-radius: 1em;
     grid-column: col 11;
@@ -67,7 +109,7 @@ body.dark h1, body.dark .support a {color: #fff;}
 }
 
 .checkbox:checked + .checkbox-label .ball {
-  transform: translateX(24px);
+  transform: translateX(-24px);
 }
 /* -------------------Darkmode end --------------*/
 .logo{
