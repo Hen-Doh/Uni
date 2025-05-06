@@ -4,7 +4,7 @@ body {
     font: italic;
     font-size: larger;
     color: #1ab62f;
-    background-color: rgb(32, 139, 47);
+    background-color: rgb(255, 255, 255);
 }
 
 body.dark {background-color: #0b2d91;} /* #9b59b6 */
