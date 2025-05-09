@@ -22,6 +22,6 @@ containsList (x:xs) a
 countList :: [Char] -> Char -> Int
 countList [] _ = 0
 countList(x:xs) a
-    |(toLower x) == a = 1 + countList xs a 
+    |(toLower x) == (toLower a) = 1 + countList xs a 
     |otherwise =countList xs a
 --countList ['A','a','b','c'] 'a'
