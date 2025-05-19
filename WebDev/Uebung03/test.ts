@@ -11,7 +11,7 @@ let Tina = new Person("Tina", 68, false);
 const people:Person[] = [Bob,Alice,Tom,Tina]
 
 
-let PersonalHTML = function (per:Person):string {
+const PersonalHTML = function (per:Person):string {
     let html:string = ` 
     <!DOCTYPE html>
     <html>
@@ -27,33 +27,61 @@ let PersonalHTML = function (per:Person):string {
 
 
 for (const individual of people) {
-fs.writeFile(`htmlFor${individual.name}.html`, PersonalHTML(individual));
+await fs.writeFile(`htmlFor${individual.name}.html`, PersonalHTML(individual));
 fs.unlink(`htmlFor${individual.name}.html`,);
 } // aks what is happening with the files
+
+
 
 const delay = (time: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, time));
 };
 
-let squareVoid = function(n:number){
+const squareVoid = function(n:number){
     console.log(n)
-    setTimeout(() =>console.log("helloWorld"),n*n)
+    delay(1000).then(() => console.log(n*n))
 }
 
-let squarePromiseAsy = async function(n:number): Promise<number>{
-    console.log(n)
-    await delay(n)
+const squarePromiseAsy = async function(n:number): Promise<number>{
+    await delay(1000)
     return n*n
 }
 
-let squarePromiseThen = function(n:number): Promise<number>{
-    console.log(n)
-    let res = delay(1000).then(() => n*n).catch(err => {console.log(err)})
+const squarePromiseThen = function(n:number): Promise<number>{
+    let res = delay(1000).then(() => n*n)
     return res
 }
 
+let delayTimes =  async function(n:number, times:number):Promise<number> {
+    let j = delay(1000)
+    while(times>0){
+        times -= 1
+        j = j.then(() => delay(1000))
+    }
+    return j.then(()=>n*n)
+}
 
-//squareVoid(100)
-//console.log(await squarePromiseAsy(1000))
-console.log(squarePromiseThen(1000))
+const squareMultiple= function (nums:number[]):Promise<number>[]{
+    let result = nums.map(x => squarePromiseThen(x))
+    return result
+}
 
+const squareMultipleAsyncAwait = async function (nums: number[]):Promise<number[]>{
+    let result = []
+    nums.forEach(async (elem) => {
+        result.push(await squarePromiseAsy(elem));
+    })
+    return result
+}
+
+//uareVoid(1)
+//console.log(await squarePromiseAsy(3))
+//console.log(await squarePromiseThen(2))
+//console.log(await delayTimes(3,3))
+const exArr:number[] = [1,2,3,4]
+let arr:any = squareMultiple(exArr)
+arr = await Promise.all(arr).catch(error => console.log(`${error} bei dem versuch die Promises zu lösen `))
+console.log(arr)
+
+let res = await squareMultipleAsyncAwait(exArr)
+console.log(res)

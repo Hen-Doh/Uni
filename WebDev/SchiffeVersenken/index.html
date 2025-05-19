@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <style>
+        .gameboard{
+            display: grid;
+            grid-template-columns: repeat(5, 60pt);
+            grid-template-rows: repeat(5, 60pt);
+        }
+    </style>
+</head>
+<body>
+    <h1>Schiffe Versenken</h1>
+    <div id="gameboard" class="gameboard"></div>
+    <p>Du hast <input id = "shots"/> mal geshossen und <input id = "hits"/> mal getroffen</p>
+    <script>
+        const counter = function(id){
+            let count = 0;
+            return{
+                inc: function(){
+                    count++;
+                    id.value = count;
+                },
+                get: function(){
+                    return count;
+                }
+            }
+        }
+        const shots = counter(document.getElementById("shots"))
+        const hits = counter(document.getElementById("hits"))
+
+        const field = [[0, 1, 1, 1, 0],
+            [0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1],
+            [1, 0, 1, 0, 1],
+            [0, 0, 0, 0, 1]];
+        field.forEach((rows, i) =>{
+            rows.forEach((column, j)=>{
+                const cell = document.createElement('button');
+                cell.id = `cell_${i}_${j}`;
+                document.getElementById("gameboard").appendChild(cell)
+                cell.addEventListener("click", () => {
+                    if(field[i][j]===1){
+                        cell.style.backgroundColor = "red";
+                        hits.inc()
+                        if(hits.get()===10){
+                            alert("You won")
+                        }
+                    }else{
+                        cell.style.backgroundColor = "blue";
+                    }
+                    shots.inc()
+                    cell.disabled = true
+                })
+            })
+        })
+    </script>
+</body>
+
