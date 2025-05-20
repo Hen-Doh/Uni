@@ -57,3 +57,9 @@ showNibble :: Nibble -> String --Niblle is a type so no instance  Show
 showNibble n = showNibbleBinnary n ++ " " ++ showNibbleDual n ++ " " ++ showNibbleComplement n
 
 bitAdder :: Bool-> Bool -> Bool -> (Bool,Bool)
+bitAdder a b c = ((a||b)&&(a||c)&&(b||c)  , xor  (xor a b) c)
+    where
+        xor d e = not ((d&&e)||(not d&& not e))
+
+nibbleAdder :: Nibble -> Nibble -> (Bool,Nibble)
+nibbleAdder (a,b,c,d)(e,f,g,h) = 
