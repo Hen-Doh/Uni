@@ -18,7 +18,7 @@ id_list satz = id_list_tail $ match1 "id" satz
 --id_list [ "id" , "," , "id" , ";" , "$$" ]
 --id_list [ "id" , "," , "id" , ";" , "$" ]
 test1 :: [String]
-test1 = id_list [ "id" , "," , "id" , ";" , "$$" ]
+test1 = id_list [ "id" , "," , "id" , ";" , "$$",",","id"]
 
 test2 :: [String]
 test2 = id_list [ "id" , "," , "id" , ";" , "$" ]
@@ -66,7 +66,7 @@ ftail (Just (x:xs))
 ftail _ = Nothing
 
 test3:: Maybe String
-test3 = prog "c+c*c$"
+test3 = prog "c+c*c$c+c$"
 
 test4:: Maybe String
 test4 = prog "c+cc$"

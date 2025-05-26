@@ -61,5 +61,22 @@ bitAdder a b c = ((a||b)&&(a||c)&&(b||c)  , xor  (xor a b) c)
     where
         xor d e = not ((d&&e)||(not d&& not e))
 
+
+--fühlt sich nicht funktional an aber wusste nicht wie sonst
 nibbleAdder :: Nibble -> Nibble -> (Bool,Nibble)
-nibbleAdder (a,b,c,d)(e,f,g,h) = 
+nibbleAdder (a,b,c,d)(a2,b2,c2,d2) = (fst res4,(snd res4, snd res3, snd res2, snd res1))
+    where 
+        res1 = bitAdder d d2 False
+        res2 = bitAdder c c2 $ fst res1
+        res3 = bitAdder b b2 $ fst res2
+        res4 = bitAdder a a2 $ fst res3
+
+tableAdder :: (Nibble -> Nibble ->(Bool,Nibble)) -> [(Nibble,Nibble)] -> String
+tableAdder _ [] = ""
+tableAdder (op) (x:xs) = showNibble (fst x) ++ " + " ++ showNibble (snd x) -- show the Nibbles about to be adde
+    ++ " = " ++show (fst res) ++ "  " ++ showNibble (snd res) --show result
+    ++  "\n" ++ tableAdder (op) xs 
+    where 
+        res = nibbleAdder (fst x) (snd x)
+
+--putStrLn( tableAdder nibbleAdder [(( True , False , False , True ) ,( False , False , False , True ) ),(( True , False , True , True ) ,( False , True , False , True ) ) ])
