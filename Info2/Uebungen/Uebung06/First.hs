@@ -54,15 +54,16 @@ findRules s (r:xs)
 
 firstSetProd :: Grammar -> Production -> [Symbol]
 firstSetProd g [] = []
-firstSetProd g [(N n)] = map firstSetProd g $ findRules (N n) (rules g)
+firstSetProd g [(N n)] = recursiveFirst g  (findRules (N n) (rules g))
 firstSetProd g [(T t)] = [(T t)]
 firstSetProd g [Epsilon] = [Epsilon]
-firstSetProd g ((T t):xs) = [(T t)]
-firstSetProd g (Epsilon:xs) = [Epsilon] --da müsste aber echt was schief lafuen um hier anzukommen
+firstSetProd g ((T t):_) = [(T t)]
+firstSetProd g (Epsilon:_) = [Epsilon] --da müsste aber echt was schief lafuen um hier anzukommen
 firstSetProd g ((N n):xs)
     |hasEpsilon = firstSetProd g xs
     |otherwise = firstSetProd g $ findRules (N n) (rules g)
-    where 
+    where
+        recursiveFirst g (x:xs) = firstSetProd g x ++ recursiveFirst g xs
         rulesWithN = findRules (N n) (rules g)
         hasEpsilon = foldl (map containsEpsilon rulesWithN)
 
