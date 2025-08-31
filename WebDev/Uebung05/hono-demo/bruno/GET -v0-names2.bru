@@ -1,0 +1,15 @@
+meta {
+  name: GET /v0/names2
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:3000/v0/names2?beginsWith=A
+  body: none
+  auth: inherit
+}
+
+params:query {
+  beginsWith: A
+}

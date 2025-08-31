@@ -4,3 +4,6 @@ Videos/
 .pdf
 .png
 node_modules/
+bun.lock
+package-lock.json
+package.json
