@@ -10,12 +10,12 @@
     providers = methods.oauth2.providers;
   };
   const loginWith = (provider:AuthProviderInfo) => {
-    sessionStorage.setItem('gitlab_verifier', gitlab.codeVerifier);
+    console.log(provider.authURL)
+    sessionStorage.setItem('gitlab_verifier', provider.codeVerifier);
     window.location.href = provider.authURL+ ' http://localhost:5173/auth/callback ';
   };
 
-  loadProviders();
-  console.log(providers[0])
+  loadProviders().then(()=>console.log(providers));
 
 </script>
 

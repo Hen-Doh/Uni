@@ -9,7 +9,7 @@
 	<link rel="icon" href={favicon}/>
 </svelte:head>
 
-<a href="/ErinnerungErstellen" >erstellen</a>
+<!--a href="/ErinnerungErstellen" >erstellen</a-->
 
 <!-- conten of children page goes here-->
 {@render children()}
