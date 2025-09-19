@@ -1,9 +1,0 @@
-{
-	"/": [],
-	"/ErinnerungErstellen": [],
-	"/Settings": [
-		"src/routes/Settings/+page.server.ts"
-	],
-	"/auth/callback": [],
-	"/auth/login": []
-}
